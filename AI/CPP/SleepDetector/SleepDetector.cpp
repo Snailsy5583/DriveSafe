@@ -24,6 +24,7 @@ using namespace cv;
 using namespace dlib;
 
 float GetPointDistance(long points[][2], int p1, int p2);
+float GetTiltY(long points[][2], int p1, int p2);
 
 int OnFrame(int32_t width, int32_t height, uint8_t* bytes, dlib::frontal_face_detector* detector, dlib::shape_predictor* predictor);
 
@@ -36,6 +37,7 @@ void DestroyDetector(frontal_face_detector& detector);
 void DestroyPredictor(shape_predictor& predictor);
 
 #define thresh 5.3*5.3
+#define tiltThresh 25
 
 // MAIN //////////////
 
@@ -69,9 +71,10 @@ int main()
 //////////////////////
 
 float GetPointDistance(long points[][2], int p1, int p2)
-{
-	return (points[p1][0] - points[p2][0]) * (points[p1][0] - points[p2][0]) + (points[p1][1] - points[p2][1]) * (points[p1][1] - points[p2][1]);
-}
+{ return (points[p1][0] - points[p2][0]) * (points[p1][0] - points[p2][0]) + (points[p1][1] - points[p2][1]) * (points[p1][1] - points[p2][1]); }
+
+float GetTiltY(long points[][2], int p1, int p2)
+{ return std::abs(points[p1][1] - points[p2][1]); }
 
 int OnFrame(int32_t width, int32_t height, uint8_t* bytes, dlib::frontal_face_detector* detector, shape_predictor* predictor)
 {
@@ -97,6 +100,8 @@ int OnFrame(int32_t width, int32_t height, uint8_t* bytes, dlib::frontal_face_de
 	auto eyeHeight = GetPointDistance(points, 37, 41);
 
 	if (eyeWidth / eyeHeight > thresh)
+		return 0;
+	else if (GetTiltY(points, 39, 42))
 		return 0;
 	else
 		return 1;
@@ -127,6 +132,8 @@ int OnFrameC(Mat frame, dlib::frontal_face_detector* detector, dlib::shape_predi
 	auto eyeHeight = GetPointDistance(points, 37, 41);
 
 	if (eyeWidth / eyeHeight > thresh)
+		return 0;
+	else if (GetTiltY(points, 39, 42))
 		return 0;
 	else
 		return 1;

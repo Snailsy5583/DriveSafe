@@ -32,8 +32,8 @@ int OnFrameC(Mat frame, dlib::frontal_face_detector* detector, dlib::shape_predi
 frontal_face_detector*	MakeDetector();
 shape_predictor*		MakePredictor();
 
-void DestroyDetector(frontal_face_detector* detector);
-void DestroyPredictor(shape_predictor* predictor);
+void DestroyDetector(frontal_face_detector& detector);
+void DestroyPredictor(shape_predictor& predictor);
 
 #define thresh 5.3*5.3
 
@@ -62,8 +62,8 @@ int main()
 			break;
 	}
 
-	DestroyDetector(detector);
-	DestroyPredictor(predictor);
+	DestroyDetector(*detector);
+	DestroyPredictor(*predictor);
 }
 
 //////////////////////

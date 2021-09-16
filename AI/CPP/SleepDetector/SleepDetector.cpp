@@ -37,7 +37,7 @@ void DestroyDetector(frontal_face_detector& detector);
 void DestroyPredictor(shape_predictor& predictor);
 
 #define thresh 5.3*5.3
-#define tiltThresh 25
+#define tiltThresh 15
 
 // MAIN //////////////
 
@@ -101,7 +101,7 @@ int OnFrame(int32_t width, int32_t height, uint8_t* bytes, dlib::frontal_face_de
 
 	if (eyeWidth / eyeHeight > thresh)
 		return 0;
-	else if (GetTiltY(points, 39, 42))
+	else if (GetTiltY(points, 39, 42) > tiltThresh)
 		return 0;
 	else
 		return 1;
@@ -133,7 +133,7 @@ int OnFrameC(Mat frame, dlib::frontal_face_detector* detector, dlib::shape_predi
 
 	if (eyeWidth / eyeHeight > thresh)
 		return 0;
-	else if (GetTiltY(points, 39, 42))
+	else if (GetTiltY(points, 39, 42) > tiltThresh)
 		return 0;
 	else
 		return 1;

@@ -1,1 +1,1 @@
-C:\Dev\SteerSafe\AI\CPP\SleepDetector\x64\Release\SleepDetector.exe
+C:\Dev\SteerSafe\AI\CPP\SleepDetector\x64\Release\SleepDetector.dll

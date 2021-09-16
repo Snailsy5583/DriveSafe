@@ -13,7 +13,7 @@
 #include <dlib/opencv.h>
 #include <dlib/serialize.h>
 
-//std
+// std
 #include <iostream>
 #include <fstream>
 #include <malloc.h>
@@ -51,19 +51,19 @@ int main()
 
 	while (cap.isOpened())
 	{
-		cap.read(frame);
-		int blinked = OnFrameC(frame, detector, predictor);
+		//cap.read(frame);
+		//int blinked = OnFrameC(frame, detector, predictor);
 
-		cout << blinked << endl;
+		//cout << blinked << endl;
 
-		cv::imshow("Frame", frame);
+		//cv::imshow("Frame", frame);
 
 		if (waitKey(1) >= 0)
 			break;
 	}
 
-	DestroyDetector(*detector);
-	DestroyPredictor(*predictor);
+	DestroyDetector(detector);
+	DestroyPredictor(predictor);
 }
 
 //////////////////////

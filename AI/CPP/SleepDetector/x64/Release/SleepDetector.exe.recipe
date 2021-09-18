@@ -2,7 +2,7 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>C:\Dev\SteerSafe\AI\CPP\SleepDetector\x64\Release\SleepDetector.exe</FullPath>
+      <FullPath>C:\Dev\DriveSafe\AI\CPP\SleepDetector\x64\Release\SleepDetector.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />
